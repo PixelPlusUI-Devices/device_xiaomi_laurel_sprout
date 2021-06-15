@@ -19,23 +19,47 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_p.mk)
 
-# Inherit some common Lineage stuff
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common ppui stuff
+$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
+
+# FaceUnlock
+TARGET_FACE_UNLOCK_SUPPORTED := true
+
+# Pixel charging animation
+TARGET_INCLUDE_PIXEL_CHARGER := true
+
+TARGET_BOOT_ANIMATION_RES := 720
+TARGET_SUPPORTS_GOOGLE_RECORDER := true
+TARGET_GAPPS_ARCH := arm64
 
 # Inherit from laurel_sprout device
-$(call inherit-product, $(LOCAL_PATH)/device.mk)
+$(call inherit-product, $(LOCAL_PATH)/laurel_sprout.mk)
 
 PRODUCT_BRAND := Xiaomi
 PRODUCT_DEVICE := laurel_sprout
 PRODUCT_MANUFACTURER := Xiaomi
-PRODUCT_NAME := lineage_laurel_sprout
+PRODUCT_NAME := aosp_laurel_sprout
 PRODUCT_MODEL := Mi A3
 
-PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
-TARGET_VENDOR_PRODUCT_NAME := laurel_sprout
+# ABI Checks
+SKIP_ABI_CHECKS := true
+
+BUILD_FINGERPRINT := "google/redfin/redfin:11/RQ2A.210505.003/7255357:user/release-keys"
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="laurel_sprout-user 11 RKQ1.200903.002 V12.0.9.0.RFQMIXM release-keys"
+    PRIVATE_BUILD_DESC="laurel_sprout-user 10 QKQ1.190910.002 V11.0.15.0.QFQMIXM release-keys" \
+    PRODUCT_NAME="laurel_sprout"
+    
+PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
-BUILD_FINGERPRINT := Xiaomi/laurel_sprout/laurel_sprout:11/RKQ1.200903.002/V12.0.9.0.RFQMIXM:user/release-keys
+#PPUI Props
+TARGET_FACE_UNLOCK_SUPPORTED = true
+TARGET_INCLUDE_PIXEL_CHARGER := true
+CUSTOM_BUILD_TYPE=OFFICIAL
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.ppui.device_name=MI-A3 \
+ro.ppui.version=3.7 \
+ro.ppui.version_code=Ragnarok \
+ro.ppui.is_official=true \
+ro.ppui.maintainer_name=H3M3L
