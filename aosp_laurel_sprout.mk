@@ -25,9 +25,6 @@ $(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 # FaceUnlock
 TARGET_FACE_UNLOCK_SUPPORTED := true
 
-# Pixel charging animation
-TARGET_INCLUDE_PIXEL_CHARGER := true
-
 TARGET_BOOT_ANIMATION_RES := 720
 TARGET_SUPPORTS_GOOGLE_RECORDER := true
 TARGET_GAPPS_ARCH := arm64
@@ -55,11 +52,7 @@ PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
 #PPUI Props
 TARGET_FACE_UNLOCK_SUPPORTED = true
+TARGET_INCLUDE_LIVE_WALLPAPERS := false
+TARGET_INCLUDE_STOCK_ACORE := false
 TARGET_INCLUDE_PIXEL_CHARGER := true
 CUSTOM_BUILD_TYPE=OFFICIAL
-PRODUCT_PROPERTY_OVERRIDES += \
-ro.ppui.device_name=MI-A3 \
-ro.ppui.version=3.7 \
-ro.ppui.version_code=Ragnarok \
-ro.ppui.is_official=true \
-ro.ppui.maintainer_name=H3M3L
