@@ -107,6 +107,9 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
+    persist.bt.enableAptXHD=true \
+    persist.service.btui.use_aptx=1 \
+    persist.vendor.btstack.a2dp_offload_cap=sbc-aptx-aptxhd-ldac \
     persist.vendor.qcom.bluetooth.soc=cherokee \
     vendor.qcom.bluetooth.soc=cherokee
 
